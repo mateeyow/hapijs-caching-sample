@@ -11,6 +11,7 @@
   "dependencies": {
     "boom": "^2.7.1",
     "catbox": "^4.2.2",
+    "catbox-mongodb": "^1.1.0",
     "catbox-redis": "^1.0.4",
     "hapi": "^8.4.0",
     "mongoose": "^4.0.1"

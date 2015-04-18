@@ -1,5 +1,6 @@
 var Boom    = require('boom'),
   mongoose  = require('mongoose'),
+  cache     = require(__basePath+'/cache'),
   addr      = process.env.MONGO_PORT_27017_TCP_ADDR || 'localhost',
   port      = process.env.MONGO_PORT_27017_TCP_PORT || 27017;
 
@@ -23,6 +24,7 @@ module.exports = {
 
   getAll: function (req, res) {
     Testing.find().exec(function (err, result) {
+      server = cache.getServer();
       if (result.length > 0) {
         var data = {
           count : result.length,
