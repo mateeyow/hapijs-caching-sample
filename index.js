@@ -24,9 +24,9 @@ var redisHost = process.env.REDIS_PORT_6379_TCP_ADDR || 'localhost';
 server = new Hapi.Server({
   cache: {
     name      : 'redis',
-    engine    : require('catbox-redis'),
-    host      : redisHost,
-    partition : 'hapiCaching'
+    engine    : require('catbox-mongodb'),
+    host      : addr,
+    partition : 'mongoCaching'
   }
 });
 
@@ -72,17 +72,21 @@ server.route([
     method  : '*',
     path    : '/something',
     handler : function (req, res) {
+      var param = {model: 'testing'};
       var random = 'Testing' + Math.floor(Math.random() * 100);
       Testing.create({name: random}, function (err, response) {
-        res(err, response);
+        return res(err, response);
       });
+
+      var param = {model: 'testing'};
+      return server.methods.find.cache.drop(param, function (err, result, cache, report) {});
     }
   },
   {
     method  : '*',
     path    : '/{model}/list',
     handler : function (req, res) {
-      server.methods.find(req.params, function (err ,result, cache, report) {
+      server.methods.find(req.params, function (err, result, cache, report) {
         if (cache) console.log('cache ok');
         console.log(report);
         return res(result);
