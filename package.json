@@ -13,7 +13,13 @@
     "catbox": "^4.2.2",
     "catbox-mongodb": "^1.1.0",
     "catbox-redis": "^1.0.4",
+    "colors": "^1.0.3",
+    "dogwater": "^0.4.6",
     "hapi": "^8.4.0",
-    "mongoose": "^4.0.1"
+    "hiredis": "^0.3.0",
+    "mongoose": "^4.0.1",
+    "sails-mongo": "^0.10.6",
+    "sails-postgresql": "^0.10.14",
+    "sails-redis": "^0.10.3"
   }
 }
